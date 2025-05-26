@@ -86,32 +86,6 @@ session() が呼ばれ、token.id を session.user.id にコピーする
   ↓
 useSession() で session.user.id が使える 🎉
 
-構造
-authOptions (NextAuthOptions)
-├─ adapter: PrismaAdapter(prisma)
-├─ session
-│  └─ strategy: "jwt"
-├─ providers
-│  └─ CredentialsProvider
-│     ├─ name: "credentials"
-│     ├─ credentials
-│     │  ├─ email: ...
-│     │  └─ password: ...
-│     └─ authorize(credentials)
-│        ├─ 入力チェック
-│        ├─ ユーザー検索（DB）
-│        ├─ パスワード照合
-│        └─ 成功時 return { id, email, name }
-├─ pages
-│  ├─ signIn: '/auth/login'
-│  └─ error: '/auth/error'
-├─ callbacks
-│  ├─ jwt({ token, user })
-│  │  └─ token.id = user.id
-│  └─ session({ session, token })
-│     └─ session.user.id = token.id
-
-
 */
 
 // Next.js 13のApp RouterでのAPI Route

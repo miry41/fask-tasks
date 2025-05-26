@@ -11,6 +11,7 @@ type EditTitleModalProps = {
 
 export default function EditTitleModal({ isOpen, onClose, onSubmit, taskTitle }: EditTitleModalProps) {
   const [title, setTitle] = useState('')
+  
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
