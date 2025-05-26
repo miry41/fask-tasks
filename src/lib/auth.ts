@@ -17,8 +17,11 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error("メールアドレスとパスワードが必要です")
+        }
         const user = await prisma.user.findUnique({
-          where: { email: credentials?.email },
+          where: { email: credentials.email },
         })
         if (!user || !user.password) throw new Error("ユーザーが見つかりません")
         const isValid = await bcrypt.compare(credentials.password, user.password)
